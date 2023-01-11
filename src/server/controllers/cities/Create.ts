@@ -1,4 +1,5 @@
 import { Request, Response, response } from 'express';
+import { StatusCodes } from 'http-status-codes';
 import * as yup from 'yup';
 
 
@@ -14,15 +15,21 @@ export const create = async (req: Request<{}, {}, ICidade>, res: Response) => {
     let validatedData: ICidade | undefined = undefined;
 
     try {
-        validatedData = await bodyValidation.validate(req.body);
+        validatedData = await bodyValidation.validate(req.body, { abortEarly: false });
 
-    } catch(error) {
-        const yupError = error as yup.ValidationError;
+    } catch(err) {
+        const yupError = err as yup.ValidationError;
+        const validationErrors: Record<string, string> = {};
 
-        return res.json({
-            errors: {
-                default: yupError.message,
-            }
+        yupError.inner.forEach(error => {
+            if (!error.path) return;
+
+            validationErrors[error.path] = error.message;
+
+        });
+
+        return res.status(StatusCodes.BAD_REQUEST).json({
+            errors: validationErrors
         });
     }
 
