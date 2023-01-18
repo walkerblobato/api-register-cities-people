@@ -35,6 +35,6 @@
             "always"
         ],
         "@typescript-eslint/no-empty-interface": "Off",
-        "@typescript-eslint/ban-types": "Off",
+        "@typescript-eslint/ban-types": "Off"
     }
 }
