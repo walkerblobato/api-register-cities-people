@@ -1,5 +1,5 @@
-import { RequestHandler } from "express";
-import { StatusCodes } from "http-status-codes";
+import { RequestHandler } from 'express';
+import { StatusCodes } from 'http-status-codes';
 import { SchemaOf, ValidationError } from 'yup';
 
 
