@@ -5,20 +5,21 @@ import { ICidade } from '../../models';
 
 export const create = async (cidade: Omit<ICidade, 'id'>): Promise<number | Error> => {
     try {
-        const [result] = await Knex(ETableNames.cidade).insert(cidade).returning('id');
+        const [result] = await Knex(ETableNames.cidade)
+            .insert(cidade)
+            .returning('id');
 
         if (typeof result === 'object') {
-            console.log(result.id);
             return result.id;
         } else if (typeof result === 'number') {
-            console.log(result);
             return result;
         }
 
         return new Error('Error ao cadastrar o registro');
+        
     } catch (error) {
         console.log(error);
 
-        return Error('Error ao cadastrar o registro');
+        return new Error('Error ao cadastrar o registro');
     }
 };
