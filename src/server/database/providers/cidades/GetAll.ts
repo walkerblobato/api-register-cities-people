@@ -22,8 +22,10 @@ export const getAll = async (page: number, limit: number, filter: string, id = 0
             if (getItemById) return [...result, getItemById];
         }
 
-        return result;
-
+        if (result.length > 0) return result;
+        
+        return new Error('Nenhum registro encontrado');
+        
     } catch (error) {
         console.log(error);
 

@@ -20,7 +20,7 @@ export const deleteById = async (req: Request<IParamProps>, res: Response) => {
     if (!req.params.id) {
         return res.status(StatusCodes.BAD_REQUEST).json({
             errors: {
-                default: 'O parâmetro "id" precisa ser informado'
+                default: 'O parâmetro "id" precisa ser informado.'
             }
         });
     }
