@@ -1,1 +1,3 @@
-# Rest Api com autenticação e cadastro de pessoas e cidades
+# Rest Api com autenticação e cadastro de estudantes e cidades
+
+## Projeto em desenvolvimento
